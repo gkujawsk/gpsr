@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Global Protect Usage Report</title>
+    <style>
+        * {
+            font-family: Tahoma, Arial, Helvetica, sans-serif;
+        }
+        a:visited {
+            color: black;
+        }
+        a {
+            color: black;
+            transition: all 200ms;
+            padding: 4px 10px 4px 10px;
+        }
+        a:hover {
+           background-color: gray; 
+        }
+
+        table, th, td {
+  border: 1px solid black;
+}
+td {
+    padding: 2px 10px 2px 10px;
+    text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  width:100%;
+}
+
+.footer {
+    font-size:10px;
+}
+
+
+    </style>
+</head>
+
+<body>
+<div style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+
+<div style="width:800px;">
+    
+        <H1 style="text-align: center;"> Global Protect Simple Report</H1>
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <div>
+            Logged in: {{ user }} 
+            </div>
+            <div>
+                <a href="/logout">Logout</a>
+            </div>
+        </div>
+        
+        <hr/>
+        <table>
+            <tr>
+                <th class="username">username</th>
+                <th class="login">login date</th>
+                <th class="logout">logout date</th>
+                <th class="duration">duration</th>
+            </tr>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.user }}</td>
+                <td>{{ event.login_date | date:"Y/m/d H:i:s"}}</td>
+                <td>{{ event.logout_date | date:"Y/m/d H:i:s"}} </td>
+                <td>{{ event.login_date|timesince:event.logout_date }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <hr />
+            <span class="footer">Created by Gabriel Kujawski 2020 </span>
+</div>
+</div>
+</body>
+</html>

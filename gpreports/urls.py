@@ -26,7 +26,7 @@ router.register(r'globalprotectevent', GlobalProtectEventViewSet)
 
 urlpatterns = [
     path('', ReportView.as_view(), name='report'),
-    # path('api/', include(router.urls)),
+    path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')), # new
     path('login/', auth_views.LoginView.as_view(template_name="login.html"), name="login"),
